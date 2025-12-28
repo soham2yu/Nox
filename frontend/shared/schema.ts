@@ -1,21 +1,35 @@
-import { z } from "zod";
+// shared/schema.ts
+// Shared types between frontend + backend
 
-export const UserSchema = z.object({
-  id: z.string(),
-  username: z.string(),
-  avatar: z.string().optional(),
-  status: z.enum(["online", "offline", "busy", "away"]).optional(),
-});
+// WebSocket events used by both client & server
+export const WS_EVENTS = {
+  CONNECTED: "connected",
+  USERS: "users",
+  NEW_MESSAGE: "new_message",
+  TYPING: "typing",
+  STOP_TYPING: "stop_typing",
+  USER_JOINED: "user_joined",
+  USER_LEFT: "user_left",
+} as const;
 
-export const MessageSchema = z.object({
-  id: z.string(),
-  from: z.string(),
-  to: z.string(),
-  content: z.string().optional(),
-  fileUrl: z.string().optional(),
-  type: z.enum(["text", "image", "video", "file"]),
-  createdAt: z.string(),
-});
+// Type for WS events
+export type WSEvent = keyof typeof WS_EVENTS;
 
-export type User = z.infer<typeof UserSchema>;
-export type Message = z.infer<typeof MessageSchema>;
+// Message type
+export interface ChatMessage {
+  id: string;
+  from: string;
+  to: string;
+  content?: string;
+  fileUrl?: string;
+  type: "text" | "image" | "video" | "file";
+  createdAt: string;
+}
+
+// User type
+export interface User {
+  id: string;
+  username: string;
+  avatar?: string;
+  status?: "online" | "offline" | "away" | "busy";
+}
