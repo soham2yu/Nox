@@ -1,25 +1,26 @@
 {
   "name": "nox-backend",
   "version": "1.0.0",
+  "main": "server.ts",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "dev": "ts-node-dev --respawn --transpile-only server.ts",
+    "start": "node build/server.js",
+    "build": "tsc"
   },
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "jsonwebtoken": "^9.0.0",
-    "drizzle-orm": "^0.29.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "socket.io": "^4.7.2",
+    "zod": "^3.22.4",
+    "drizzle-orm": "^0.30.0",
     "pg": "^8.11.0",
-    "multer": "^1.4.5",
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.0"
+    "pg-pool": "^3.6.0"
   },
   "devDependencies": {
     "typescript": "^5.3.3",
-    "ts-node": "^10.9.1",
-    "nodemon": "^3.0.2"
+    "ts-node-dev": "^2.0.0"
   }
 }
