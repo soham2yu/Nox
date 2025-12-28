@@ -1,0 +1,133 @@
+I want you to generate a complete, production-ready MERN stack real-time chat application inside ONE Replit project (monorepo).
+
+======================
+STACK REQUIREMENTS
+======================
+
+Frontend:
+- React + Vite
+- Tailwind CSS or simple CSS
+- Pages: Login, Signup, Chat, User Management (CRUD)
+- WhatsApp-style layout: left user list, right chat window
+- File upload button (images, documents, videos)
+- Protected routes
+- JWT stored in HttpOnly cookies
+- Online/offline status
+- Typing indicator
+- Socket.io-client integrated
+
+Backend:
+- Node.js + Express
+- MongoDB with Mongoose
+- Folder structure: /server/routes, /controllers, /models, /middleware, /socket
+- APIs:
+  POST /auth/signup
+  POST /auth/login
+  POST /auth/google (placeholder Google OAuth)
+  GET /users
+  PUT /users/:id
+  DELETE /users/:id
+  GET /messages/:chatId
+  POST /messages (text/file/video)
+- Authentication:
+  - JWT access + refresh tokens
+  - bcrypt password hashing
+  - Unique email + mobile number validation
+  - Middleware: auth, errorHandler
+- File upload using multer
+- Save chat messages to MongoDB
+- CRUD operations for managing users
+
+Realtime:
+- Setup socket.io server inside Express
+- Events:
+  - connection
+  - disconnect
+  - send-message
+  - receive-message
+  - user-online
+  - user-offline
+  - typing
+- Join rooms using userId
+- Emit new messages to all connected clients
+
+Database (MongoDB):
+Models required:
+- User: name, email, mobile, passwordHash, avatarUrl, createdAt
+- Message: senderId, receiverId, text, fileUrl, videoUrl, createdAt
+- Chat (optional): members array
+
+======================
+ARCHITECTURE FLOW
+======================
+
+START
+↓
+User opens React UI → Frontend sends HTTP request to Express backend
+↓
+Express fetches initial data from MongoDB
+↓
+User sends message → React emits to socket.io
+↓
+Express server receives message → saves to MongoDB
+↓
+socket.io broadcasts the message to all clients
+↓
+React UI updates instantly
+↓
+END
+
+======================
+FOLDER STRUCTURE (IMPORTANT)
+======================
+
+/client
+   /src
+      /pages
+      /components
+      /context
+      /api
+      App.jsx
+      main.jsx
+   vite.config.js
+   package.json
+
+/server
+   /models
+   /routes
+   /controllers
+   /middleware
+   /socket
+   server.js
+   package.json
+
+README.md
+.env.example
+
+======================
+ADDITIONAL REQUIREMENTS
+======================
+
+- Everything must run with: "npm run dev"
+- Provide proxy setup so frontend hits backend without CORS issues
+- Provide sample .env
+- Provide instructions at the bottom
+
+======================
+TASK
+======================
+
+Generate the FULL code for:
+✔ Backend  
+✔ Frontend  
+✔ Socket.io  
+✔ MongoDB models  
+✔ Routes + controllers  
+✔ Auth + JWT  
+✔ File upload  
+✔ CRUD  
+✔ Chat UI  
+
+Make sure everything works together with zero errors.
+
+Begin now.
